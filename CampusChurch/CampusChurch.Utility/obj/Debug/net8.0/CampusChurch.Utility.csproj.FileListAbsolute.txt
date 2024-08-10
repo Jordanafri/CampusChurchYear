@@ -1,0 +1,12 @@
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\bin\Debug\net8.0\CampusChurch.Utility.deps.json
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\bin\Debug\net8.0\CampusChurch.Utility.dll
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\bin\Debug\net8.0\CampusChurch.Utility.pdb
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.csproj.AssemblyReference.cache
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.AssemblyInfoInputs.cache
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.AssemblyInfo.cs
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.csproj.CoreCompileInputs.cache
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.dll
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\refint\CampusChurch.Utility.dll
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\CampusChurch.Utility.pdb
+C:\Users\Jorda\OneDrive\Documents\GitHub\CampusChurch\CampusChurch.Utility\obj\Debug\net8.0\ref\CampusChurch.Utility.dll

@@ -1,0 +1,256 @@
+﻿@model List<Sermon>
+
+<title>Sermons List</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+<style>
+    .sermon-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sermon-image {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+    }
+
+    .sermon-details {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .sermon-title {
+        font-weight: bold;
+        color: #FFD700; /* Gold color */
+    }
+
+    .sermon-series {
+        color: #FF69B4; /* Pink color */
+    }
+
+    .sermon-date {
+        font-size: 0.9em;
+        color: gray;
+    }
+
+    .sermon-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .more-info {
+        cursor: pointer;
+        color: white;
+        background-color: #555;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .details-box {
+        display: none;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+
+    .toggle-arrow {
+        cursor: pointer;
+        font-size: 1.5rem;
+        color: #555;
+    }
+</style>
+
+<div class="container mt-5">
+    <table id="tblData" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/sermonUser.js"></script>
+}
+
+
+
+
+@* @model List<Sermon>
+
+<title>Sermons List</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<style>
+    .sermon-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sermon-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sermon-details {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .sermon-title {
+        font-weight: bold;
+        color: #FFD700; /* Gold color */
+    }
+
+    .sermon-series {
+        color: #FF69B4; /* Pink color */
+    }
+
+    .sermon-date {
+        font-size: 0.9em;
+        color: gray;
+    }
+
+    .sermon-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .more-info {
+        cursor: pointer;
+        color: white;
+        background-color: #555;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .details-box {
+        display: none;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    <table id="tblData" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/sermonUser.js"></script>
+}
+ *@
+
+
+
+
+@* @model List<Sermon>
+
+<title>Sermons List</title>
+<link rel="stylesheet" href="https://cdn.datatables.net/1.11.3/css/jquery.dataTables.min.css">
+<style>
+    .sermon-container {
+        border: 1px solid #ccc;
+        padding: 10px;
+        margin-bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .sermon-image {
+        width: 50px;
+        height: 50px;
+    }
+
+    .sermon-details {
+        flex-grow: 1;
+        margin-left: 10px;
+    }
+
+    .sermon-title {
+        font-weight: bold;
+        color: #FFD700; /* Gold color */
+    }
+
+    .sermon-series {
+        color: #FF69B4; /* Pink color */
+    }
+
+    .sermon-date {
+        font-size: 0.9em;
+        color: gray;
+    }
+
+    .sermon-actions {
+        display: flex;
+        gap: 10px;
+    }
+
+    .more-info {
+        cursor: pointer;
+        color: white;
+        background-color: #555;
+        padding: 5px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .details-box {
+        display: none;
+        padding: 10px;
+        background-color: #f9f9f9;
+        border: 1px solid #ccc;
+        margin-top: 10px;
+    }
+</style>
+
+<div class="container mt-5">
+    <table id="tblData" class="table table-bordered display">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Details</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.3/js/jquery.dataTables.min.js"></script>
+    <script src="~/js/sermonUser.js"></script>
+}
+ *@

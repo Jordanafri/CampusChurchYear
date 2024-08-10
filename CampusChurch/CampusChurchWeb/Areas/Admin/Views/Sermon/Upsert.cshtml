@@ -1,0 +1,121 @@
+﻿@model CampusChurch.Models.ViewModels.SermonVM
+
+<div class="card shadow border-0 mt-4">
+    <div class="card-header bg-secondary bg-gradient mt-0 py-3">
+        <div class="row">
+            <div class="col-12 text-center">
+                <h2 class="text-dark py-2">@((Model.Sermon.Id != 0) ? "Update" : "Create") Sermon</h2>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card-body p-4">
+    <form method="post" class="row" enctype="multipart/form-data">
+        <input asp-for="Sermon.Id" hidden />
+        <input asp-for="Sermon.FilePath" hidden />
+        <div class="row">
+            <div class="col-8">
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.Title" class="p-0">Sermon Title</label>
+                    <input asp-for="Sermon.Title" class="form-control" />
+                    <span asp-validation-for="Sermon.Title" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.Description" class="p-0">Description</label>
+                    <textarea asp-for="Sermon.Description" class="form-control"></textarea>
+                    <span asp-validation-for="Sermon.Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.Date" class="p-0">Date</label>
+                    <input asp-for="Sermon.Date" class="form-control" type="date" id="sermonDate" />
+                    <span asp-validation-for="Sermon.Date" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.SeriesId" class="p-0">Series</label>
+                    <select asp-for="Sermon.SeriesId" asp-items="Model.SeriesList" class="form-select">
+                        <option value="" selected>Standalone</option>
+                        @foreach (var series in Model.SeriesList)
+                        {
+                            <option value="@series.Value">@series.Text</option>
+                        }
+                    </select>
+                    <span asp-validation-for="Sermon.SeriesId" class="text-danger"></span>
+                </div>
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.FilePath" class="p-0">Audio</label>
+                    <input type="file" name="file" class="form-control" @(Model.Sermon.Id == 0 ? "required" : "") />
+                    <span asp-validation-for="Sermon.FilePath" class="text-danger"></span>
+                </div>
+
+
+                <div class="mb-3 row p-1">
+                    <label asp-for="Sermon.ImagePath" class="p-0">Image</label>
+                    <select asp-for="Sermon.ImagePath" class="form-select" id="imageSelect">
+                        <option disabled selected>--Select Image--</option>
+                        <option value="default.jpg">Default Image</option>
+                        @foreach (var image in Model.ImageList)
+                        {
+                            <option value="@image">@image</option>
+                        }
+                    </select>
+                </div>
+
+                <div class="row">
+                    <div class="col-6 col-md-3">
+                        <button type="submit" class="btn btn-primary form-control">@((Model.Sermon.Id != 0) ? "Update" : "Create")</button>
+                    </div>
+                    <div class="col-6 col-md-3">
+                        <a asp-controller="Sermon" asp-action="Index" class="btn btn-outline-secondary border form-control">Back</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="mb-3">
+                    <label>Selected Image</label>
+                    <div id="selectedImageContainer" class="border p-2">
+                        <img id="selectedImage" src="" class="img-fluid" alt="Selected Image" style="display: none; width: 100%;" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const imageSelect = document.getElementById('imageSelect');
+            const selectedImage = document.getElementById('selectedImage');
+
+            imageSelect.addEventListener('change', function () {
+                const selectedValue = this.value;
+                if (selectedValue) {
+                    selectedImage.src = `/icons/${selectedValue}`; // Adjust path if necessary
+                    selectedImage.style.display = 'block';
+                } else {
+                    selectedImage.src = '';
+                    selectedImage.style.display = 'none';
+                }
+            });
+
+            // Display default image if no image is selected
+            if (!imageSelect.value) {
+                selectedImage.src = '/icons/default.jpg'; // Path to default image
+                selectedImage.style.display = 'block';
+            }
+
+            // Set today's date as default if no date is selected
+            var dateInput = document.getElementById('sermonDate');
+            if (!dateInput.value) {
+                var today = new Date();
+                var day = String(today.getDate()).padStart(2, '0');
+                var month = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+                var year = today.getFullYear();
+                var currentDate = year + '-' + month + '-' + day;
+                dateInput.value = currentDate;
+            }
+        });
+    </script>
+}

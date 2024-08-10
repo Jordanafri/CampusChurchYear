@@ -1,0 +1,6 @@
+﻿Support for ASP.NET Core Identity was added to your project.
+
+For setup and configuration information, see https://go.microsoft.com/fwlink/?linkid=2116645.
+https://localhost:7209/Identity/Account/Login
+
+/Identity/Account/Login

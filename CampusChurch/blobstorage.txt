@@ -1,0 +1,68 @@
+Yes, the provided code will work for your current setup and won't affect your plan to store sermon files in Azure Blob Storage later. By using the `[NotMapped]` attribute or the `Ignore` method in `OnModelCreating`, you're simply instructing Entity Framework to ignore the `File` property when mapping the `Sermon` entity to the database. This approach keeps your entity class clean and ensures that only the properties that should be stored in the database are mapped.
+
+When you're ready to implement Azure Blob Storage for storing sermon files, you'll handle the file uploads and downloads separately from your database operations. Typically, you would do this in your service layer or within your controllers.
+
+Here's an example of how you might handle file uploads to Azure Blob Storage in a service method:
+
+```csharp
+using Azure.Storage.Blobs;
+using Microsoft.AspNetCore.Http;
+using System.IO;
+using System.Threading.Tasks;
+
+public class BlobService
+{
+    private readonly BlobServiceClient _blobServiceClient;
+    private readonly string _containerName;
+
+    public BlobService(BlobServiceClient blobServiceClient, string containerName)
+    {
+        _blobServiceClient = blobServiceClient;
+        _containerName = containerName;
+    }
+
+    public async Task<string> UploadFileAsync(IFormFile file)
+    {
+        var containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
+        await containerClient.CreateIfNotExistsAsync();
+        
+        var blobClient = containerClient.GetBlobClient(file.FileName);
+        
+        using (var stream = file.OpenReadStream())
+        {
+            await blobClient.UploadAsync(stream, overwrite: true);
+        }
+
+        return blobClient.Uri.ToString();
+    }
+
+    public async Task DownloadFileAsync(string blobName, Stream destinationStream)
+    {
+        var containerClient = _blobServiceClient.GetBlobContainerClient(_containerName);
+        var blobClient = containerClient.GetBlobClient(blobName);
+        
+        await blobClient.DownloadToAsync(destinationStream);
+    }
+}
+```
+
+And in your controller, you might have an action like this:
+
+```csharp
+[HttpPost]
+public async Task<IActionResult> UploadSermon(IFormFile file)
+{
+    if (file == null || file.Length == 0)
+    {
+        return BadRequest("Invalid file.");
+    }
+
+    var blobUrl = await _blobService.UploadFileAsync(file);
+
+    // Here you might save the blobUrl in the database associated with the Sermon entity
+
+    return Ok(new { blobUrl });
+}
+```
+
+This way, you can keep your `Sermon` entity clean and focused on database storage, while managing the actual file storage separately with Azure Blob Storage.
